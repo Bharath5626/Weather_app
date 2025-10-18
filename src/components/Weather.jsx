@@ -58,8 +58,32 @@
         };
 
             useEffect(() => {
-                    search("Chennai");
-            }, []);
+                // perform an initial fetch for a default city on mount without depending on `search`
+                (async () => {
+                    try {
+                        const city = "Chennai";
+                        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        if (!response.ok) {
+                            // show API message if initial fetch fails
+                            console.warn('Initial fetch failed:', data.message);
+                            return;
+                        }
+                        const icon = allIcons[data.weather[0].icon] || clear_icon;
+                        setWeatherData({
+                            humidity: data.main.humidity,
+                            windSpeed: data.wind.speed,
+                            temperature: Math.floor(data.main.temp),
+                            location: data.name,
+                            icon: icon,
+                        });
+                    } catch (err) {
+                        console.error('Initial weather fetch error', err);
+                        setWeatherData(false);
+                    }
+                })();
+            }, );
 
         return (
         <div className='weather'>
