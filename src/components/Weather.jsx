@@ -58,7 +58,7 @@
         };
 
             useEffect(() => {
-                // perform an initial fetch for a default city on mount without depending on `search`
+                
                 (async () => {
                     try {
                         const city = "Chennai";
@@ -66,7 +66,7 @@
                         const response = await fetch(url);
                         const data = await response.json();
                         if (!response.ok) {
-                            // show API message if initial fetch fails
+                            
                             console.warn('Initial fetch failed:', data.message);
                             return;
                         }
@@ -83,7 +83,7 @@
                         setWeatherData(false);
                     }
                 })();
-            }, );
+            }, []);
 
         return (
         <div className='weather'>
