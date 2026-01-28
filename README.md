@@ -91,12 +91,3 @@ The app reads the OpenWeatherMap API key from `import.meta.env.VITE_APP_ID` (set
 
 This project is provided as-is. Icons in `src/assets` are included in the repo — ensure you have the right to ship them if you publish the project. OpenWeatherMap provides the weather data (see https://openweathermap.org/terms).
 
----
-
-If you want, I can also:
-
-- Add a short example `.env.example` file
-- Replace alert-based errors with inline UI messages
-- Add a small README badge and a screenshot or GIF
-
-Tell me which of the extras you'd like and I'll implement them.
